@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Risk Assessment Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1, h2, h3 { color: #333; }
+        .risk-level { font-weight: bold; font-size: 1.2em; }
+        .low-risk { color: green; }
+        .moderate-risk { color: orange; }
+        .high-risk { color: red; }
+    </style>
+</head>
+<body>
+    <h1>Heart Disease Risk Assessment Result</h1>
+    <p>Risk Level: <span class="risk-level {{ risk_class }}">{{ risk_level }}</span></p>
+    <p>Probability of Heart Disease: {{ probability }}</p>
+    
+    <h2>Risk Factors Analysis:</h2>
+    <ul>
+        {% if user_inputs.age|float > 50 %}
+            <li>Your age ({{ user_inputs.age }} years) contributes to an elevated risk. Heart disease risk increases with age.</li>
+        {% endif %}
+        {% if user_inputs.gender_concept_id == '8507' %}
+            <li>Being male is associated with a higher risk of heart disease.</li>
+        {% endif %}
+        {% if user_inputs.bmi|float > 25 %}
+            <li>Your BMI ({{ user_inputs.bmi }}) indicates overweight or obesity, which increases heart disease risk.</li>
+        {% endif %}
+        {% if user_inputs.systolic_bp|float > 130 or user_inputs.diastolic_bp|float > 80 %}
+            <li>Your blood pressure ({{ user_inputs.systolic_bp }}/{{ user_inputs.diastolic_bp }} mmHg) is elevated, which is a risk factor for heart disease.</li>
+        {% endif %}
+        {% if user_inputs.cholesterol|float > 200 %}
+            <li>Your total cholesterol level ({{ user_inputs.cholesterol }} mg/dL) is above the recommended range, increasing your risk.</li>
+        {% endif %}
+        {% if user_inputs.glucose|float > 100 %}
+            <li>Your glucose level ({{ user_inputs.glucose }} mg/dL) is elevated, which can contribute to heart disease risk.</li>
+        {% endif %}
+        {% if user_inputs.hdl_cholesterol|float < 40 %}
+            <li>Your HDL cholesterol level ({{ user_inputs.hdl_cholesterol }} mg/dL) is lower than recommended, which may increase your risk.</li>
+        {% endif %}
+        {% if user_inputs.ldl_cholesterol|float > 100 %}
+            <li>Your LDL cholesterol level ({{ user_inputs.ldl_cholesterol }} mg/dL) is higher than optimal, increasing your risk.</li>
+        {% endif %}
+        {% if user_inputs.triglycerides|float > 150 %}
+            <li>Your triglyceride level ({{ user_inputs.triglycerides }} mg/dL) is elevated, which can contribute to heart disease risk.</li>
+        {% endif %}
+    </ul>
+    
+    <h2>Recommendations:</h2>
+    <ul>
+        <li>Maintain a heart-healthy diet rich in fruits, vegetables, whole grains, and lean proteins.</li>
+        <li>Aim for at least 150 minutes of moderate-intensity exercise per week.</li>
+        <li>If you smoke, consider quitting and seek support if needed.</li>
+        <li>Limit alcohol consumption to moderate levels or avoid it entirely.</li>
+        <li>Regularly monitor and control your blood pressure, cholesterol, and blood sugar levels.</li>
+        <li>Schedule regular check-ups with your healthcare provider to monitor your heart health.</li>
+    </ul>
+
+    <h3>Your Inputs:</h3>
+    <ul>
+        {% for key, value in user_inputs.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><em>Note: This assessment is based on general guidelines and the information you provided. Always consult with a healthcare professional for personalized medical advice and a comprehensive evaluation.</em></p>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sally - Heart Disease Risk Assessment Tool</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .form-group { display: flex; flex-wrap: wrap; gap: 20px; }
+        .form-field { flex: 1 1 calc(50% - 20px); margin-bottom: 10px; }
+        label { display: block; margin-bottom: 5px; }
+        input, select { width: 100%; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Sally - Heart Disease Risk Assessment Tool</h1>
+    <form action="/predict" method="post">
+        <div class="form-group">
+            <div class="form-field">
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required min="18" max="120">
+            </div>
+            <div class="form-field">
+                <label for="gender_concept_id">Gender:</label>
+                <select id="gender_concept_id" name="gender_concept_id" required>
+                    <option value="8532">Female</option>
+                    <option value="8507">Male</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="race_concept_id">Race:</label>
+                <select id="race_concept_id" name="race_concept_id" required>
+                    <option value="8527">White</option>
+                    <option value="8516">Black or African American</option>
+                    <option value="8515">Asian</option>
+                    <option value="8557">American Indian or Alaska Native</option>
+                    <option value="8657">Native Hawaiian or Other Pacific Islander</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="ethnicity_concept_id">Ethnicity:</label>
+                <select id="ethnicity_concept_id" name="ethnicity_concept_id" required>
+                    <option value="38003563">Hispanic or Latino</option>
+                    <option value="38003564">Not Hispanic or Latino</option>
+                </select>
+            </div>
+            <div class="form-field">
+                <label for="diastolic_bp">Diastolic Blood Pressure (mmHg):</label>
+                <input type="number" id="diastolic_bp" name="diastolic_bp" required min="40" max="130">
+            </div>
+            <div class="form-field">
+                <label for="systolic_bp">Systolic Blood Pressure (mmHg):</label>
+                <input type="number" id="systolic_bp" name="systolic_bp" required min="70" max="200">
+            </div>
+            <div class="form-field">
+                <label for="bmi">BMI:</label>
+                <input type="number" id="bmi" name="bmi" step="0.1" required min="15" max="50">
+            </div>
+            <div class="form-field">
+                <label for="cholesterol">Total Cholesterol (mg/dL) (125-500):</label>
+                <input type="number" id="cholesterol" name="cholesterol" required min="125" max="500">
+            </div>
+            <div class="form-field">
+                <label for="glucose">Glucose (mg/dL) (70-200+):</label>
+                <input type="number" id="glucose" name="glucose" required min="70" max="500">
+            </div>
+            <div class="form-field">
+                <label for="hdl_cholesterol">HDL Cholesterol (mg/dL) (20-100):</label>
+                <input type="number" id="hdl_cholesterol" name="hdl_cholesterol" required min="20" max="100">
+            </div>
+            <div class="form-field">
+                <label for="ldl_cholesterol">LDL Cholesterol (mg/dL) (30-300):</label>
+                <input type="number" id="ldl_cholesterol" name="ldl_cholesterol" required min="30" max="300">
+            </div>
+            <div class="form-field">
+                <label for="triglycerides">Triglycerides (mg/dL) (40-500+):</label>
+                <input type="number" id="triglycerides" name="triglycerides" required min="40" max="1000">
+            </div>
+            <div class="form-field">
+                <label for="waist_circumference">Waist Circumference (cm) (60-150):</label>
+                <input type="number" id="waist_circumference" name="waist_circumference" required min="60" max="150">
+            </div>
+            <div class="form-field">
+                <label for="total_cholesterol">Total Cholesterol (mg/dL) (100-300):</label>
+                <input type="number" id="total_cholesterol" name="total_cholesterol" required min="100" max="300">
+            </div>
+        </div>
+        <input type="submit" value="Assess Risk">
+    </form>
+    <p><strong>Note:</strong> This tool is for educational purposes only and does not replace professional medical advice.</p>
+</body>
+</html>
